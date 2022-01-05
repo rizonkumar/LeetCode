@@ -1,8 +1,7 @@
 class Solution {
     public List<List<String>> partition(String s) {
         List<List<String>> res = new ArrayList<>();
-        List<String> path = new ArrayList<>();
-        
+        List<String> path = new ArrayList<>();   
         func(0, s, path, res);
         return res;
     }
