@@ -2,6 +2,8 @@ class Solution {
     public boolean wordPattern(String pattern, String str) {
     
         String[] words = str.split(" ");
+        
+        // edge case
         if (words.length != pattern.length()) {
   			return false;
         }
