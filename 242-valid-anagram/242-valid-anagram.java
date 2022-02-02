@@ -4,12 +4,20 @@ class Solution {
         if(s.length() != t.length())
             return false;
         
-        char[] sArr = s.toCharArray();
-        char[] tArr = t.toCharArray();
+        int[] count = new int[26];
         
-        Arrays.sort(sArr);
-        Arrays.sort(tArr);
+        for(char c: s.toCharArray()){
+            count[c - 'a']++;
+        }
         
-        return Arrays.equals(sArr, tArr);
+        for(char c: t.toCharArray()){
+            count[c - 'a']--;
+        }
+        
+        for(int i = 0; i < 26; i++){
+            if(count[i] != 0)
+                return false;
+        }
+        return true;
     }
 }
