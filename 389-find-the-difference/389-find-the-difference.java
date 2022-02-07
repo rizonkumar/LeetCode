@@ -1,24 +1,13 @@
 class Solution {
-    public char findTheDifference(String s, String t) {
-        
-        int a = s.length();
-        int b = t.length();
-        
-        if(a == 0){
-            return t.charAt(0);
-        } else {
-            char[] l = s.toCharArray();
-            char[] h = t.toCharArray();
-            
-            Arrays.sort(l);
-            Arrays.sort(h);
-            
-            for(int i = 0; i < a; i++){
-                if(l[i] != h[i]){
-                    return h[i];
-                }
-            }
-            return h[b - 1];
-        }  
+    public char findTheDifference(String s, String t){
+        s = s + t;
+        char xor = s.charAt(0);
+    
+        for(int i=1; i<s.length(); i++)
+        {
+            xor = (char)(xor ^ s.charAt(i));
+        }
+    
+    return xor;
     }
 }
