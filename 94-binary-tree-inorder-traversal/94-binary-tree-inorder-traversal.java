@@ -14,7 +14,9 @@
  * }
  */
 class Solution {
-    
+   /*
+   // Recursion
+   
     private void dfs(TreeNode node, List<Integer> inorder){
         if(node == null) return;
         
@@ -27,5 +29,29 @@ class Solution {
         List<Integer> inorder = new ArrayList<Integer>(); 
         dfs(root, inorder);
         return inorder; 
+    }
+    
+    */
+    
+    // Iterative
+    
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> inorder = new ArrayList<Integer>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode node = root;
+        while(true){
+            if(node != null){
+                stack.push(node);
+                node = node.left;
+            } else{ // if it is null whtever is at top is our inorder{
+                 if(stack.isEmpty()){
+                     break;
+                 }
+            node = stack.pop();
+            inorder.add(node.val);
+            node = node.right;
+            }
+        }
+    return inorder;
     }
 }
