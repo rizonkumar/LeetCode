@@ -1,12 +1,14 @@
 class Solution {
     
     private void findCombination(int ind, int[] arr, int target, List<List<Integer>>ans, List<Integer>ds ){
-            if(ind == arr.length){
-                if(target == 0){
-                    ans.add(new ArrayList<>(ds));
-                }
-            return;
-        }
+        
+        if(ind == arr.length){
+            if(target == 0){
+                ans.add(new ArrayList<>(ds));
+            }
+        return;
+    }
+        
         //pick condition
         if(arr[ind] <= target){
             ds.add(arr[ind]);
