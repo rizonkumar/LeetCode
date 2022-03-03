@@ -8,6 +8,8 @@ class Solution {
             if(nums[i] - nums[i-1] == nums[i-1] - nums[i-2]){
                 dp[i] = dp[i-1] + 1;
                 res += dp[i];
+            } else {
+                dp[i] = 0;
             }
         }
         return res;
