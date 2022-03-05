@@ -58,7 +58,7 @@ class Solution
     int getMiddle(Node head)
     {
         // base case
-       // if(head == null) return 0;
+        if(head == null) return 0;
         Node slow = head;
         Node fast = head;
         while(fast != null && fast.next != null ){
