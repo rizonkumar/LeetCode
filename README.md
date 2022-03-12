@@ -1,2 +1,3 @@
 # LeetCode & GeeksforGeek 
-Collection of LeetCode / questions did during my placement preparation! 
+
+Collection of LeetCode / geekforgeek questions did during my placement preparation. 
