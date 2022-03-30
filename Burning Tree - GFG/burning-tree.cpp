@@ -81,45 +81,47 @@ Node *buildTree(string str) {
 
  // } Driver Code Ends
 //User function Template for C++
+
 class Solution {
- public:
-   //RootToTarget->path from root to target node
-   void RootToTarget(Node*root,int target,vector<Node*>&ans,vector<Node*>temp){
-       if(root==NULL) return;
-       temp.push_back(root);
-       if(root->data==target){
-           for(int i=0;i<temp.size();i++){
-               ans.push_back(temp[i]);
-           }
-           return ;
-       }
-       RootToTarget(root->left,target,ans,temp);
-       RootToTarget(root->right,target,ans,temp);
-   }
-   
-   int height(Node*root,Node*block){
-       if(root==NULL || root==block) return 0;
-       int l=height(root->left,block);
-       int r=height(root->right,block);
-       return max(l,r)+1;
-   }
-   
-   int minTime(Node* root, int target) 
-   {
-       vector<Node*>temp;
-       vector<Node*>ans;
-       RootToTarget(root,target,ans,temp);
-       ans.push_back(NULL);
-       reverse(ans.begin(),ans.end());
-       //NULL 8 5 2 1
-           // |  .
-       int maxi=INT_MIN;
-       for(int i=1;i<ans.size();i++){
-           int h=height(ans[i],ans[i-1])-1;
-           maxi=max(maxi,h+i-1);
-       }
-       return maxi;
-   }
+  public:
+    void burnTheTree(Node *root,int maxT,stack<Node *>&st,int &ans,Node* blocker){
+        if(root==NULL || root==blocker) return;
+        
+        if(root->left!=NULL){
+            burnTheTree(root->left,maxT+1,st,ans,blocker);
+        }
+        if(root->right!=NULL){
+            burnTheTree(root->right,maxT+1,st,ans,blocker);
+        }
+        if(st.top() == root){
+            st.pop();
+            if(!st.empty()) burnTheTree(st.top(),maxT+1,st,ans,root);
+        }
+        ans = max(maxT,ans);
+    }
+    void rootToNodePath(Node *root,int target,vector<Node*> &v,stack<Node*>&s){
+        if(root == NULL) return;
+        v.push_back(root);
+        if(root->data==target)
+        {
+            for(int i =0 ;i<v.size() ;i++) s.push(v[i]);
+            return;
+        }
+        rootToNodePath(root->left,target,v,s);
+        rootToNodePath(root->right,target,v,s);
+        v.pop_back();
+    }
+    int minTime(Node* root, int target) 
+    {
+        // Your code goes here
+        int ans = 0;
+        stack<Node*> st;
+        vector<Node*> v;
+        rootToNodePath(root,target,v,st);
+        Node* blocker = NULL;
+        burnTheTree(st.top(),0,st,ans,blocker);
+        return ans;
+    }
 };
 
 // { Driver Code Starts.
