@@ -21,6 +21,8 @@ class Solution {
         if(curr > p.val && curr > q.val){
             return lowestCommonAncestor(root.left, p, q);
         }
+        
+        // if thts not the case then its the first point or last point of intersection
         return root;
     }
 }
