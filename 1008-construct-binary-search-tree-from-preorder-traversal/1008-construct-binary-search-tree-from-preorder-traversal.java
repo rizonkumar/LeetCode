@@ -1,15 +1,15 @@
-
 class Solution {
-    public TreeNode bstFromPreorder(int[] preorder) {
-        return bstFromPreorder(preorder, Integer.MAX_VALUE, new int[] {0});
+public:
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        int i = 0;
+        return build(preorder, i, INT_MAX);
     }
-    
-    public TreeNode bstFromPreorder(int[] preorder, int bound, int[] i){
-        if(i[0] == preorder.length || preorder[i[0]] > bound) return null;
-        
-        TreeNode root = new TreeNode(preorder[i[0]++]);
-        root.left = bstFromPreorder(preorder, root.val, i);
-        root.right = bstFromPreorder(preorder, bound, i);
+
+    TreeNode* build(vector<int>& preorder, int& i, int bound) {
+        if (i == preorder.size() || preorder[i] > bound) return NULL;
+        TreeNode* root = new TreeNode(preorder[i++]);
+        root->left = build(preorder, i, root->val);
+        root->right = build(preorder, i, bound);
         return root;
     }
-}
+};
