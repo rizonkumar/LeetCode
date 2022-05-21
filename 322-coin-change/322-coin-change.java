@@ -1,3 +1,4 @@
+//For the iterative solution, we think in bottom-up manner. Suppose we have already computed // all the minimum counts up to sum, what would be the minimum count for sum+1?
 public class Solution {
     public int coinChange(int[] coins, int amount) {
         if(amount<1) return 0;
