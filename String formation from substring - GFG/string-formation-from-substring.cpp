@@ -23,8 +23,8 @@ public:
               j=0;
           }
       }
-     if(j==0)return 0;
-     return n%(n-j)==0;
+     if (j == 0) return 0;
+     return n % (n - j) == 0;
     }
 };
 
