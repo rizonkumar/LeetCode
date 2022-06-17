@@ -1,7 +1,4 @@
-class Solution(object):
+class Solution:
     def decode(self, A, first):
-        res = [first]
-        for a in A:
-            res.append(res[-1] ^ a)
-        return res
+        return list(accumulate([first] + A, lambda x, y: x ^ y))
         
