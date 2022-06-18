@@ -1,3 +1,4 @@
+// Discussion Solution
 class Solution {
     public int minMaxGame(int[] a) {
         for(int n= a.length; n>1 ; n-=(n/2)){
