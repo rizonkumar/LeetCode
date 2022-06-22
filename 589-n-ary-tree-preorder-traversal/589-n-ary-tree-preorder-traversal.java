@@ -1,4 +1,4 @@
-
+// Recurively
 class Solution {
     List<Integer> result = new ArrayList<>();
     public List<Integer> preorder(Node root) {
