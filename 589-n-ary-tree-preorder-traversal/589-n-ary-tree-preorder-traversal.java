@@ -1,17 +1,20 @@
-// Recurively
+// Iterative
 class Solution {
     List<Integer> result = new ArrayList<>();
     public List<Integer> preorder(Node root) {
         if(root == null) return result;
-        preorderHelper(root);
-        return result;
-    }
-    
-    public void preorderHelper(Node node){
-        if(node.children == null) return;
-        result.add(node.val);
-        for(Node child: node.children){
-            preorderHelper(child);
+        
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        
+        while(!stack.isEmpty()){
+            Node curr = stack.pop();
+            result.add(curr.val);
+            // pushing the children in reverse order
+            for(int i = curr.children.size() - 1; i >= 0; i--){
+                stack.push(curr.children.get(i));
+            }
         }
+        return result;
     }
 }
