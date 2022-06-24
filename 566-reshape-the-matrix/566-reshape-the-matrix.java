@@ -2,6 +2,7 @@ class Solution {
     public int[][] matrixReshape(int[][] mat, int r, int c) {
         
         if(mat.length * mat[0].length != r * c){
+            // returning original matrix if reshaping is not possible
             return mat;
         }   
         // if the equality is meet
