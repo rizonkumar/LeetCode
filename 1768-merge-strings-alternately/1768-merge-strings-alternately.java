@@ -1,12 +1,13 @@
-// One Pointer
+// Two Pointer
 class Solution {
     public String mergeAlternately(String w1, String w2) {
+        int n = w1.length(), m = w2.length(), i = 0, j = 0;
         StringBuilder res = new StringBuilder();
-        for (int i = 0; i < w1.length() || i < w2.length(); ++i) {
+        while (i < n || j < m) {
             if (i < w1.length())
-                res.append(w1.charAt(i));
-            if (i < w2.length())
-                res.append(w2.charAt(i));
+                res.append(w1.charAt(i++));
+            if (j < w2.length())
+                res.append(w2.charAt(j++));
         }
         return res.toString();
     }
