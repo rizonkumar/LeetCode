@@ -1,28 +1,22 @@
-// Approach - 1
+// Approach - 2 (using swap)
 class Solution {
 private:
-    void rPermute(vector<int> &ds, vector<int> &nums, vector<vector<int>> &ans, int freq[]){
-        if(ds.size() == nums.size()){
-            ans.push_back(ds);
+    void rPermute(int ind, vector<int> &nums, vector<vector<int>> &ans){
+        // base case
+        if(ind == nums.size()){
+            ans.push_back(nums);
             return;
         }
-        for(int i = 0; i < nums.size(); i++){
-            if(!freq[i]){
-                ds.push_back(nums[i]);
-                freq[i] = 1;
-                rPermute(ds, nums, ans, freq);
-                freq[i] = 0;
-                ds.pop_back();
-            }
+        for(int i = ind; i < nums.size(); i++){
+            swap(nums[ind], nums[i]);
+            rPermute(ind + 1, nums, ans);
+            swap(nums[ind], nums[i]);
         }
     }
 public:
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> ans;
-        vector<int> ds;
-        int freq[nums.size()];
-        for(int i = 0; i < nums.size(); i++) freq[i] = 0;
-        rPermute(ds, nums, ans, freq);
+        rPermute(0, nums, ans);
         return ans;
     }
 };
